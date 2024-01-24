@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://du1w1f0wksls3"]
+
+[ext_resource type="PackedScene" uid="uid://1ent85gi0gdg" path="res://Assets/jukebox.glb" id="1_74gjo"]
+[ext_resource type="PackedScene" uid="uid://c1gteqx4kuoep" path="res://player.tscn" id="2_rkypt"]
+[ext_resource type="PackedScene" uid="uid://c0ldg21qanobg" path="res://Assets/torch.blend" id="4_3vwej"]
+[ext_resource type="Texture2D" uid="uid://dqr81ahnmupoq" path="res://Assets/Skyboxes/AllSkyFree_Sky_MoonBurst_Equirect.png" id="4_5t7fv"]
+[ext_resource type="PackedScene" uid="uid://6ocnfx3laups" path="res://tree.tscn" id="4_x0c03"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_21ftu"]
+panorama = ExtResource("4_5t7fv")
+
+[sub_resource type="Sky" id="Sky_yfskn"]
+sky_material = SubResource("PanoramaSkyMaterial_21ftu")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_vigl3"]
+background_mode = 2
+background_color = Color(0.647059, 0.760784, 1, 1)
+background_energy_multiplier = 1.46
+sky = SubResource("Sky_yfskn")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_emission = Color(0.431373, 0.431373, 0.431373, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acufk"]
+size = Vector3(30, 4, 30.0001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h72t6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fskhr"]
+albedo_color = Color(0.223529, 0.694118, 0, 1)
+
+[node name="Forest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vigl3")
+
+[node name="jukebox" parent="WorldEnvironment" instance=ExtResource("1_74gjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29136, 0)
+
+[node name="Player" parent="WorldEnvironment" instance=ExtResource("2_rkypt")]
+
+[node name="torch" parent="WorldEnvironment/Player" instance=ExtResource("4_3vwej")]
+transform = Transform3D(-0.00148944, -0.0505414, -0.732644, 0.734068, -0.0216328, 0, -0.0215814, -0.732326, 0.0505633, 1.17838, 1.02126, 0.00523281)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment/Player/torch"]
+transform = Transform3D(1.36168, -3.72529e-08, 1.00496e-09, 3.72529e-09, 1.36168, 1.37967e-08, -5.55112e-17, 1.77636e-15, 1.36168, 0, 0, 0)
+light_color = Color(0.956863, 1, 1, 1)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_size = 20.32
+shadow_enabled = true
+spot_range = 16.0
+spot_attenuation = 1.68179
+spot_angle = 41.46
+
+[node name="land" type="StaticBody3D" parent="WorldEnvironment"]
+transform = Transform3D(2.13618, 0, 0, 0, 2.13618, 0, 0, 0, 2.13618, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/land"]
+transform = Transform3D(1.52965, 0, 0, 0, 1, 0, 0, 0, 1.63695, 0, -1.66028, 0)
+shape = SubResource("BoxShape3D_acufk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/land"]
+transform = Transform3D(45.0445, 0, 0, 0, 1, 0, 0, 0, 49.3602, 0, 0, 0)
+mesh = SubResource("BoxMesh_h72t6")
+surface_material_override/0 = SubResource("StandardMaterial3D_fskhr")
+
+[node name="Tree" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+
+[node name="Tree2" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+transform = Transform3D(2.56558, 0, 0, 0, 2.56558, 0, 0, 0, 2.56558, -13.5634, 5.20342, 10.6111)
+
+[node name="Tree3" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+transform = Transform3D(2.56558, 0, 0, 0, 2.56558, 0, 0, 0, 2.56558, -13.5634, 5.20342, -10.8504)
+
+[node name="Tree4" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+transform = Transform3D(2.56558, 0, 0, 0, 2.56558, 0, 0, 0, 2.56558, 28.7669, 5.20342, 23.3085)
+
+[node name="Tree5" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+transform = Transform3D(2.56558, 0, 0, 0, 2.56558, 0, 0, 0, 2.56558, 28.7669, 5.20342, -10.856)
+
+[node name="Tree6" parent="WorldEnvironment" instance=ExtResource("4_x0c03")]
+transform = Transform3D(2.56558, 0, 0, 0, 2.56558, 0, 0, 0, 2.56558, 9.16403, 5.20342, -26.9531)
