@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1gteqx4kuoep"]
+[gd_scene load_steps=4 format=3 uid="uid://c1gteqx4kuoep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yd1mo"]
 [ext_resource type="PackedScene" uid="uid://gmewi8xo53ax" path="res://Assets/playertest.glb" id="2_wag2o"]
-[ext_resource type="AudioStream" uid="uid://rw34duuuegge" path="res://Assets/panting.mp3" id="3_dx1ti"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ja43"]
 size = Vector3(1.96198, 3.8623, 1.80383)
@@ -10,7 +9,6 @@ size = Vector3(1.96198, 3.8623, 1.80383)
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(0.0688511, 0, 0.997627, 0, 1, 0, -0.997627, 0, 0.0688511, 8.61914, 1.83563, 1.62198)
 script = ExtResource("1_yd1mo")
-MouseSensitivity = 0.003
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.999611, 0, -0.0278694, 0, 1, 0, 0.0278694, 0, 0.999611, -0.0521356, 2.79581, -1.07991)
@@ -20,7 +18,3 @@ transform = Transform3D(0.999611, 0, -0.0278694, 0, 1, 0, 0.0278694, 0, 0.999611
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149235, 0.974515, 0.0706921)
 shape = SubResource("BoxShape3D_2ja43")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_dx1ti")
-autoplay = true
